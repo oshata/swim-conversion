@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Convert Time</title>
+  </head>
+  <body>
+    <form id="convert-form">
+      <label>
+        Convert From:
+        <select name="convert_from">
+          <option value="shortCourseYards">Short Course Yards</option>
+          <option value="longCourseMeters">Long Course Meters</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Convert To:
+        <select name="convert_to">
+          <option value="longCourseMeters">Long Course Meters</option>
+          <option value="shortCourseYards">Short Course Yards</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Distance:
+        <select name="distance">
+          <option value="50">50</option>
+          <option value="100">100</option>
+          <option value="200">200</option>
+          <option value="400">400</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Stroke:
+        <select name="stroke">
+          <option value="butterfly">Butterfly</option>
+          <option value="backstroke">Backstroke</option>
+          <option value="breaststroke">Breaststroke</option>
+          <option value="freestyle">Freestyle</option>
+          <option value="ind_medley">Individual Medley</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Your Time:
+        <input type="number" name="your_time_minutes" placeholder="Minutes" />
+        <input type="number" name="your_time_seconds" placeholder="Seconds" />
+        <input type="number" name="your_time_milliseconds" placeholder="Milliseconds" />
+      </label>
+      <br />
+      <button type="submit">Convert Time</button>
+    </form>
+    <script>
+      const convertForm = document.getElementById("convert-form");
+
+      convertForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(convertForm);
+        const convertData = {};
+
+        for (const [key, value] of formData.entries()) {
+          convertData[key] = value;
+        }
+
+        const response = await fetch("http://localhost:3000/convert", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(convertData),
+        });
+
+        const responseData = await response.json();
+
+        console.log(responseData);
+      });
+    </script>
+  </body>
+</html>
