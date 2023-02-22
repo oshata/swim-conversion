@@ -28,7 +28,15 @@ app.post('/convert', (req, res) => {
   let yourTime = totalTimeInSeconds;
 
   if (convert_from === 'shortCourseYards' && convert_to === 'longCourseMeters') {
-    adjustmentFactor = 1.11;
+    if (distance === 500 || distance === 1000){
+      adjustmentFactor = 0.8925;
+    }
+    else if (distance === 1650){
+      adjustmentFactor = 1.02;
+    }
+    else {
+      adjustmentFactor = 1.11;
+    }
 
     switch (stroke.value) {
       case 'butterfly':
@@ -83,6 +91,15 @@ app.post('/convert', (req, res) => {
             break;
           case '200':
             adjustment = 3.2;
+            break;
+          case '500':
+            adjustment = 6.4;
+            break;
+          case '1000':
+            adjustment = 12.8;
+            break;
+          case '1650':
+            adjustment = 24.0;
             break;
         }
         break;
@@ -98,7 +115,15 @@ app.post('/convert', (req, res) => {
         break;
     }
 } else if (convert_from === 'longCourseMeters' && convert_to === 'shortCourseYards') {
-    adjustmentFactor = 1 / 1.11;
+    if (distance === 400 || distance === 800){
+      adjustmentFactor = 1 / 0.8925;
+    }
+    else if (distance === 1500){
+      adjustmentFactor = 1 / 1.02;
+    }
+    else {
+      adjustmentFactor = 1 / 1.11;
+    }
 
     switch (stroke.value) {
       case 'butterfly':
@@ -153,6 +178,15 @@ app.post('/convert', (req, res) => {
             break;
           case '200':
             adjustment = 3.2;
+            break;
+          case '400':
+            adjustment = 6.4;
+            break;
+          case '800':
+            adjustment = 12.8;
+            break;
+          case '1500':
+            adjustment = 24.0;
             break;
         }
         break;
