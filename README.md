@@ -2,7 +2,7 @@
 
 ### Request Data
 For the POST request data for the program it will require the following items:  
-    Endpoint is /convert
+    
     convert_from,
     convert_to,
     distance,
@@ -10,6 +10,8 @@ For the POST request data for the program it will require the following items:
     your_time_minutes,
     your_time_seconds,
     your_time_milliseconds
+    
+    Endpoint is /convert
 
 from the front end to be able to parce the data.
 
