@@ -1,7 +1,8 @@
 # Swim conversion server for CS361
 
 ### Request Data
-For the POST request data for the program it will require the following items:     
+For the POST request data for the program it will require the following items:  
+    Endpoint is /convert
     convert_from,
     convert_to,
     distance,
