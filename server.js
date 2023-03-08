@@ -203,13 +203,14 @@ app.post('/convert', (req, res) => {
     }
   }
 
-  let convertedTime = (yourTime - adjustment) * adjustmentFactor;
+  let convertedTime = ((yourTime - adjustment) * (adjustmentFactor) / 100);
 
   const converted_minutes = { value: Math.floor(convertedTime / 60) };
   const converted_seconds = { value: Math.floor(convertedTime % 60) };
   const converted_milliseconds = { value: (convertedTime % 1) * 1000 };
 
   res.send({
+    convertedTime,
     converted_minutes,
     converted_seconds,
     converted_milliseconds,
